@@ -1,25 +1,9 @@
 const express=require('express');
 const bodyParser=require('body-parser');
-const mysql=require('mysql');
 
 const readBook=express.Router();
 readBook.use(bodyParser.json());
-
-//create connection with database
-var db=mysql.createConnection({
-    host:'localhost',
-    user:'root',
-    database:'readstore'
-    });
-
-//to connect database
-db.connect((err,result)=>{
-    if(err){
-        throw err
-    }
-    console.log('database is connected');
-});
-
+var db=require('../connectionDatabase');
 
 
 readBook.route('/')
@@ -36,8 +20,8 @@ readBook.route('/')
         }
         console.log('before parsing');
         console.log(results);
-       var result=JSON.parse(JSON.stringify(results));
-       console.log('after parsing data')
+        var result=JSON.parse(JSON.stringify(results));
+       console.log('after parsing data');
       console.log(result[1].nameOfbook);
       res.send(result[1].nameOfbook);
     });
@@ -53,6 +37,6 @@ readBook.route('/')
      })
  })
 
- var prakash ="man";
+ 
 
 module.exports=readBook;
