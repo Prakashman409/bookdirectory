@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>form read</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css'  href='/stylesheets/style.css'> 
+
+</head>
+<body>
+   <h1>Here is the book you wish to read.</h1>
+   <h3>i am from wishbook list</h3>
+   <p>
+  <ul class="bookStyle">
+    <%for( var i=0;i < data.length; i++){%>
+      <li class="forDelete" onclick=""><%=data[i].nameOfBook%>
+        <button id="delete">delete</button>
+        <button id="update">update</button></li></li>
+        <%}%>
+  </ul>
+    
+
+</p> 
+ 
+</body>
+</html>

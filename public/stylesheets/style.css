@@ -1,8 +1,29 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  
+}
+.readback{
+  background-color: #00B7FF;
 }
 
-a {
-  color: #00B7FF;
+.forDelete{
+  display: block;
+  padding: 5px 5px 5px 5px;
+  font-size: large;
+  list-style: none;
+}
+.homepage{
+  background-color: aqua;
+}
+
+.readBackground{
+  background-color: beige;
+}
+
+#delete{
+  margin-left: 3px;
+}
+#update{
+  margin-left: 3px;
 }

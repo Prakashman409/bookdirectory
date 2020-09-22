@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>form read</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../stylesheets/style.css'>
+    
+</head>
+<body class='readBackground'>
+    <form action="/readbook" method="POST" id="form-data">
+        <label for="bookname">Name Of Book</label>
+        <input type="text" name="bookname"><br>
+        <label for="authorname">Author Of Book</label>
+        <input type="text" name="authorname"><br>
+        <label for="readingdate">Date Of Reading</label>
+        <input type="text" name="readingdate"><br>
+        <input type="submit" name="Submit" value="submit">
+              
+    </form>
+    <h3>if want the list of book you read <a href="/readbook/getreadbook"><span>click here</span></a></h3>
+</body>
+</html>

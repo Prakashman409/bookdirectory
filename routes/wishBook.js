@@ -1,42 +1,39 @@
 const express=require('express');
 const wishBook=express.Router();
+const bodyParser=require('body-parser');
 var db=require('../connectionDatabase');
+
+wishBook.use(bodyParser.json());
 
 
 wishBook.route('/')
-.all((req,res,next)=>{
-    res.statusCode=200;
-    res.setHeader('Content-Type' , 'text/plain');
-    next();
-})
 .get((req,res)=>{
-    res.end('all the book you read');
-    let sql="SELECT * FROM wishbook";
-    db.query(sql,(err,result)=>{
-        if(err){
-            throw err;
-        }
-        console.log('before parsing');
-        console.log(result);
-        var results=JSON.parse(JSON.stringify(result));
-        console.log('after parsing');
-        console.log(results);
-    })
-})
-.post((req,res)=>{
-    res.end('read book posted in database');
-    let sql="INSERT INTO wishbook(nameOfBook,authorOfBook,dateOfReading) VALUES('steve jobs','walter issacson','september 31')";
-    db.query(sql,(err,result)=>{
-        if(err){
-            throw err;
-        }
-        console.log('dataposted');
-        
+   res.sendFile('pages/wishPage.html',{root:'public'});
     })
 
-   
-   
-    
-});
+.post((req,res)=>{
+    let data=req.body;
+    res.send(`${data.nameofbook} was added`);
+    var sql="INSERT INTO wishbook (nameOfBook,authorOfBook,dateOfReading) VALUES ('"+data.nameofbook+"','"+data.authorofbook+"','"+data.dateofreading+"')";
+    db.query(sql,(err,result)=>{
+        if (err){
+            throw err;
+        }
+        console.log('wishbook data posted');
+    })
+    });
+
+    wishBook.route('/wishbooklist')
+    .get((req,res)=>{
+        let sql='SELECT nameOfBook FROM wishbook';
+        db.query(sql,(err,result)=>{
+            if(err){
+                throw err;
+            }
+            var results=JSON.parse(JSON.stringify(result));
+            res.render('wishBooklist',{data:results});
+        })
+    })
+  
 
 module.exports=wishBook;

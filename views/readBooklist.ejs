@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>form read</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+   <link rel='stylesheet' type='text/css' href='/stylesheets/style.css'> 
+   <script
+   src="https://code.jquery.com/jquery-3.5.1.js"
+   integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+   crossorigin="anonymous"></script>
+   <script type="text/javascript" src="/javascripts/deleteAndUpdate.js"></script>
+
+</head>
+<body class="readback">
+   <h1>Here is the book list you had read.</h1>
+   <p>
+  
+    <%for( var i=0;i < data.length; i++){%>
+       <li class="forDelete" ><%=data[i].nameOfbook%>
+        
+          
+        <%}%>
+
+        <button onclick="getValue()">delete</button>
+
+        <p>i am from readbook list</p>
+
+</p> 
+ 
+</body>
+</html>

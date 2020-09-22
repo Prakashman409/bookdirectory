@@ -1,42 +1,63 @@
 const express=require('express');
 const bodyParser=require('body-parser');
+var app=require('../app.js');
 
 const readBook=express.Router();
 readBook.use(bodyParser.json());
 var db=require('../connectionDatabase');
 
 
+
+
 readBook.route('/')
 .all((req,res,next)=>{
     res.statusCode=200;
-    res.setHeader('Content-Type','text/plain');
     next();
 })
 .get((req,res)=>{
-    let sql='SELECT * FROM booklist';
-    db.query(sql,(err,results,fields)=>{
-        if(err){
-            throw err;
-        }
-        console.log('before parsing');
-        console.log(results);
-        var result=JSON.parse(JSON.stringify(results));
-       console.log('after parsing data');
-      console.log(result[1].nameOfbook);
-      res.send(result[1].nameOfbook);
-    });
+    res.sendFile('pages/readPage.html',{root:'public'}); 
+   
 })
  .post((req,res)=>{
-     res.end('Books posted in your database you currently read');
-     let sql="INSERT INTO booklist (nameOfBook,authorOfBook,dateOfStudy) VALUES('startup','chris','september 1')";
-     db.query(sql,(err,results)=>{
+   var data=req.body;
+   let sql="INSERT INTO booklist (nameOfBook,authorOfBook,dateOfStudy) VALUES('"+data.bookname+"','"+data.authorname+"','"+data.readingdate+"')";
+   db.query(sql,(err,result)=>{
+       if(err){
+           throw err;
+       }
+       console.log('data posted of form');
+   })
+   res.send('dataposted');
+ })
+
+ readBook.route('/getreadbook')
+ .get((req,res)=>{
+     
+     let sql='SELECT nameOfbook FROM booklist';
+     db.query(sql,(err,result)=>{
          if(err){
              throw err;
          }
-         console.log('1 record inserted');
+         var results=JSON.parse(JSON.stringify(result));
+          console.log(results);
+          console.log('hello there')
+         // res.send('hey u are getting book list');
+         res.render('readBooklist',{data:results});
+          })
+      
      })
- })
 
+     .delete((req,res)=>{
+         console.log(name);
+         console.log('i am from delete');
+         let sql='DELETE FROM booklist WHERE nameOfbook="name"';
+         db.query(sql,(err,result)=>{
+            if(err){
+                throw err;
+            }
+           
+         })
+     });
  
 
 module.exports=readBook;

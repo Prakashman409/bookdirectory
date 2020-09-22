@@ -10,7 +10,7 @@ db.connect((err,result)=>{
     if(err){
         throw err
     }
-    console.log('database is suceesfully  connected');
+    console.log('database is suceesfully connected');
 });
 
 module.exports=db;
