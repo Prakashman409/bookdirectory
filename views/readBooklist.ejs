@@ -17,17 +17,22 @@
    <h1>Here is the book list you had read.</h1>
    <p>
   
-    <%for( var i=0;i < data.length; i++){%>
-       <li class="forDelete" ><%=data[i].nameOfbook%>
-        
-          
-        <%}%>
+  
+      <%for( var i=0;i < data.length; i++){%>
 
-        <button onclick="getValue()">delete</button>
-
-        <p>i am from readbook list</p>
+         <ul>
+            <li class="forDelete" name='name'><%=data[i].nameOfbook%> </li>
+               <input type="button" id="delete" value="delete">
+               <input type="button" id="update" value="update">
+           
+         </ul>
+         
+         
+         
+           <%}%>
 
 </p> 
+
  
 </body>
 </html>

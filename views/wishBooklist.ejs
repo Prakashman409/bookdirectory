@@ -6,22 +6,36 @@
     <title>form read</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css'  href='/stylesheets/style.css'> 
+    <script
+    src="https://code.jquery.com/jquery-3.5.1.js"
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/javascripts/deleteAndUpdate.js"></script>
 
 </head>
 <body>
    <h1>Here is the book you wish to read.</h1>
    <h3>i am from wishbook list</h3>
    <p>
-  <ul class="bookStyle">
     <%for( var i=0;i < data.length; i++){%>
-      <li class="forDelete" onclick=""><%=data[i].nameOfBook%>
-        <button id="delete">delete</button>
-        <button id="update">update</button></li></li>
-        <%}%>
-  </ul>
-    
+
+      <ul>
+         <li class="forDelete" name='name'><%=data[i].nameOfBook%> </li>
+            <input type="button" id="wishdelete" value="delete">
+            <input type="button" id="update" value="update">
+        
+      </ul>
+       <%}%>
 
 </p> 
+<div class="modal-bg">
+  <div class="modal">
+    <label for="updateBookName">Update the book name</label><br>
+    <input type="text" name="updateBookName" class="updateData">
+    <button class="btn">Submit</button>
+    <h3 class="cancel">x</h3>
+  </div>
+</div>
  
 </body>
 </html>

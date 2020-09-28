@@ -34,6 +34,28 @@ wishBook.route('/')
             res.render('wishBooklist',{data:results});
         })
     })
+        .delete((req,res)=>{
+            let sql=`DELETE from wishbook WHERE nameOfBook='${req.body.book}'`;
+            db.query(sql,(err,result)=>{
+                if(err){
+                    throw err;
+                }
+                var results=JSON.parse(JSON.stringify(result))
+                   res.render('wishBooklist',{data:results});
+            })
+        })
+        .put((req,res)=>{
+           console.log(req.body);
+           let sql=`UPDATE wishbook SET nameOfBook='${req.body.updateBook}' WHERE nameOfBook='${req.body.book}'`;
+           db.query(sql,(err,result)=>{
+               if(err){
+                   throw err;
+               }
+               var results=JSON.parse(JSON.stringify(result));
+               console.log(results);
+               res.render('wishBooklist',{data:results});
+           })
+        })
   
 
 module.exports=wishBook;
